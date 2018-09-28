@@ -108,20 +108,24 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="自由的心">
-<meta property="og:url" content="https://xiaojun-cd.github.io/archives/index.html">
+  <meta name="description" content="autoconf和cmake系统构建工具，不需要指定库位置，这能够自动检测出很多系统的配置，然而如果你遇到问题或想让thrift链接到你自已的第三库：12- BOOST_ROOT : For boost, e.g. D:\boost_1_55_0 - OPENSSL_ROOT_DIR : For OpenSSL, e.g. D:\OpenSSL-Win32 libthriftnb需要的库:1LIB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows下用vs2017编译Thrift with C++">
+<meta property="og:url" content="https://xiaojun-cd.github.io/2018/09/28/Windows下用vs2017编译Thrift with C++/index.html">
 <meta property="og:site_name" content="自由的心">
+<meta property="og:description" content="autoconf和cmake系统构建工具，不需要指定库位置，这能够自动检测出很多系统的配置，然而如果你遇到问题或想让thrift链接到你自已的第三库：12- BOOST_ROOT : For boost, e.g. D:\boost_1_55_0 - OPENSSL_ROOT_DIR : For OpenSSL, e.g. D:\OpenSSL-Win32 libthriftnb需要的库:1LIB">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-28T00:10:48.380Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自由的心">
+<meta name="twitter:title" content="Windows下用vs2017编译Thrift with C++">
+<meta name="twitter:description" content="autoconf和cmake系统构建工具，不需要指定库位置，这能够自动检测出很多系统的配置，然而如果你遇到问题或想让thrift链接到你自已的第三库：12- BOOST_ROOT : For boost, e.g. D:\boost_1_55_0 - OPENSSL_ROOT_DIR : For OpenSSL, e.g. D:\OpenSSL-Win32 libthriftnb需要的库:1LIB">
 
 
 
 
 
 
-  <link rel="canonical" href="https://xiaojun-cd.github.io/archives/"/>
+  <link rel="canonical" href="https://xiaojun-cd.github.io/2018/09/28/Windows下用vs2017编译Thrift with C++/"/>
 
 
 
@@ -131,7 +135,7 @@
   };
 </script>
 
-  <title>归档 | 自由的心</title>
+  <title>Windows下用vs2017编译Thrift with C++ | 自由的心</title>
   
 
 
@@ -178,7 +182,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -251,7 +255,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
   </li>
@@ -284,443 +288,182 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiaojun-cd.github.io/2018/09/28/Windows下用vs2017编译Thrift with C++/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XiaoJun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自由的心">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Windows下用vs2017编译Thrift with C++
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-28 08:10:48" itemprop="dateCreated datePublished" datetime="2018-09-28T08:10:48+08:00">2018-09-28</time>
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 14 篇日志。 继续努力。
-      </span>
-      
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/28/详解C++内存管理/" itemprop="url">
-              
-                <span itemprop="name">C++内存管理（超长，例子很详细，排版很好）</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-28T08:10:48+08:00"
-              content="2018-09-28" >
-          09-28
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/28/详解C++中指针-取地址-解引用与引用的区别/" itemprop="url">
-              
-                <span itemprop="name">详解C++中指针()、取地址(&)、解引用()与引用(&)的区别 (完整代码)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-28T08:10:48+08:00"
-              content="2018-09-28" >
-          09-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/28/破解加密的压缩文件/" itemprop="url">
-              
-                <span itemprop="name">破解加密的压缩文件</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-28T08:10:48+08:00"
-              content="2018-09-28" >
-          09-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/28/Windows安装和编译openssl库/" itemprop="url">
-              
-                <span itemprop="name">Windows10+VS2017下安装和 编译openssl库</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-28T08:10:48+08:00"
-              content="2018-09-28" >
-          09-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        <p><code>autoconf</code>和<code>cmake</code>系统构建工具，不需要指定库位置，这能够自动检测出很多系统的配置，然而如果你遇到问题或想让<code>thrift</code>链接到你自已的第三库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- BOOST_ROOT : For boost, e.g. D:\boost_1_55_0 </span><br><span class="line">- OPENSSL_ROOT_DIR : For OpenSSL, e.g. D:\OpenSSL-Win32</span><br></pre></td></tr></table></figure></p>
+<p><code>libthriftnb</code>需要的库:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIBEVENT_ROOT_DIR : For Libevent e.g. D:\libevent-2.0.21-stable</span><br></pre></td></tr></table></figure></p>
+<p><strong>Linking Against Thrift</strong></p>
+<p>You need to link your project that uses thrift against all the thrift dependencies; in the case of libthrift, boost and for libthriftnb, libevent.<br>In the project properties you must also set HAVE_CONFIG_H as force include the config header: “windows/confg.h”</p>
+<p><strong>Dependencies</strong></p>
+<p>The same dependencies for shared_ptr as described above apply to windows as well.</p>
+<p>boost thread <a href="http://www.boost.org/doc/libs/release/doc/html/thread.html" target="_blank" rel="noopener">http://www.boost.org/doc/libs/release/doc/html/thread.html</a></p>
+<p>libevent (for libthriftnb only) <a href="http://monkey.org/~provos/libevent/" target="_blank" rel="noopener">http://monkey.org/~provos/libevent/</a></p>
+<p>Notes on boost thread (static vs shared)<br>By default lib/cpp/windows/force_inc.h defines:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define BOOST_ALL_NO_LIB 1</span><br><span class="line">#define BOOST_THREAD_NO_LIB 1</span><br></pre></td></tr></table></figure></p>
+<p><strong>命名管道(Named Pipes)</strong></p>
+<p>Named Pipe transport has been added in the TPipe and TPipeServer classes. This is currently Windows-only. Named pipe transport for NIX has not been<br>implemented. Domain sockets are a better choice for local IPC under non-Windows OS’s. NIX named pipes only support 1:1 client-server connection.</p>
+<p><strong>Thrift/SSL</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir cmake-build &amp;&amp; cd cmake-build</span><br><span class="line">cmake -G &quot;Visual Studio 15 2017 Win64&quot; -DBOOST_ROOT=D:/boost/boost_1_65_1 -DBUILD_PYTHON=OFF -DBUILD_CPP=ON -DWITH_SHARED_LIB=OFF -DBUILD_COMPILER=OFF -DBUILD_HASKELL=OFF ..</span><br></pre></td></tr></table></figure>
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/28/Windows下用vs2017编译Thrift with C++/" itemprop="url">
-              
-                <span itemprop="name">Windows下用vs2017编译Thrift with C++</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-28T08:10:48+08:00"
-              content="2018-09-28" >
-          09-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/28/RPC资料汇总/" itemprop="url">
-              
-                <span itemprop="name">RPC资料汇总</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-28T08:10:48+08:00"
-              content="2018-09-28" >
-          09-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/28/金融历史数据源汇总/" itemprop="url">
-              
-                <span itemprop="name">金融历史数据源汇总</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-28T07:57:38+08:00"
-              content="2018-09-28" >
-          09-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/28/Hexo网站配置/" itemprop="url">
-              
-                <span itemprop="name">Hexo网站配置</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-28T09:35:47+08:00"
-              content="2018-06-28" >
-          06-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/27/git push免输入账号和密码方法/" itemprop="url">
-              
-                <span itemprop="name">git push免输入账号和密码方法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-27T10:29:11+08:00"
-              content="2018-06-27" >
-          06-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/27/python中ctypes的用法/" itemprop="url">
-              
-                <span itemprop="name">python 中如何使用 C 类型的数组？ ctypes 的用法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-27T10:29:11+08:00"
-              content="2018-06-27" >
-          06-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/28/RPC资料汇总/" rel="next" title="RPC资料汇总">
+                <i class="fa fa-chevron-left"></i> RPC资料汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/28/Windows安装和编译openssl库/" rel="prev" title="Windows10+VS2017下安装和 编译openssl库">
+                Windows10+VS2017下安装和 编译openssl库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -934,6 +677,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 

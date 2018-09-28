@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="初步了解——指针与取地址123456789#include&amp;lt;cstdio&amp;gt;int main(void)&amp;#123;	int num = 7;	int *p = &amp;amp;num;	printf(&amp;quot;%d 的地址是 %p\n&amp;quot;, num, p);	return 0;&amp;#125; 上面int p定义了一个指向int类型指针p（我们使用符号把p声明为指针），并初始化p使其指">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详解C++中指针()、取地址(&amp;)、解引用()与引用(&amp;)的区别 (完整代码)">
+<meta property="og:url" content="https://xiaojun-cd.github.io/2018/09/28/详解C++中指针-取地址-解引用与引用的区别/index.html">
+<meta property="og:site_name" content="自由的心">
+<meta property="og:description" content="初步了解——指针与取地址123456789#include&amp;lt;cstdio&amp;gt;int main(void)&amp;#123;	int num = 7;	int *p = &amp;amp;num;	printf(&amp;quot;%d 的地址是 %p\n&amp;quot;, num, p);	return 0;&amp;#125; 上面int p定义了一个指向int类型指针p（我们使用符号把p声明为指针），并初始化p使其指">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-28T00:10:48.382Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="详解C++中指针()、取地址(&amp;)、解引用()与引用(&amp;)的区别 (完整代码)">
+<meta name="twitter:description" content="初步了解——指针与取地址123456789#include&amp;lt;cstdio&amp;gt;int main(void)&amp;#123;	int num = 7;	int *p = &amp;amp;num;	printf(&amp;quot;%d 的地址是 %p\n&amp;quot;, num, p);	return 0;&amp;#125; 上面int p定义了一个指向int类型指针p（我们使用符号把p声明为指针），并初始化p使其指">
+
+
+
+
+
+
+  <link rel="canonical" href="https://xiaojun-cd.github.io/2018/09/28/详解C++中指针-取地址-解引用与引用的区别/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>详解C++中指针()、取地址(&)、解引用()与引用(&)的区别 (完整代码) | 自由的心</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">自由的心</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">要么旅行，要么读书，身体和灵魂，必须有一个在路上</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiaojun-cd.github.io/2018/09/28/详解C++中指针-取地址-解引用与引用的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XiaoJun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自由的心">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">详解C++中指针()、取地址(&)、解引用()与引用(&)的区别 (完整代码)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-28 08:10:48" itemprop="dateCreated datePublished" datetime="2018-09-28T08:10:48+08:00">2018-09-28</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="初步了解——指针与取地址"><a href="#初步了解——指针与取地址" class="headerlink" title="初步了解——指针与取地址"></a>初步了解——指针与取地址</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int num = 7;</span><br><span class="line">	int *p = &amp;num;</span><br><span class="line">	printf(&quot;%d 的地址是 %p\n&quot;, num, p);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面int <em>p定义了一个指向int类型指针p（我们使用</em>符号把p声明为指针），并初始化p使其指向int类型的变量num，<br>这里&amp;num中的&amp;是取地址操作符，当&amp;作用于一个对象上时，它返回了该对象的地址。</p>
+<p>所以这里指针p指向了num所对应的地址。（我测试时输出了0028FF1C）</p>
+<h1 id="如何使用指针？——解引用与指针赋值"><a href="#如何使用指针？——解引用与指针赋值" class="headerlink" title="如何使用指针？——解引用与指针赋值"></a>如何使用指针？——解引用与指针赋值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int num = 7;</span><br><span class="line">	int *p = &amp;num;</span><br><span class="line">	printf(&quot;数值%d所在的地址是 %p\n&quot;, num, p);</span><br><span class="line">	printf(&quot;指针p所指向的地址为 %p , 该地址上所保存的值为%d\n&quot;, p, *p);</span><br><span class="line">	*p = 100;</span><br><span class="line">	printf(&quot;指针p所指向的地址为 %p , 该地址上所保存的值为%d\n&quot;, p, num);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意这里*操作符为解引用操作符，它返回指针p所指的地址所保存的值。</p>
+<p>我们可以对*p赋值，从而改变p所指的地址上说保存的值，从而改变指向此地址的变量num的值。（num的值变为100）</p>
+<p>当然，我们也可以给指针p赋值，使其指向另外一个地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int num = 7, another = -5;</span><br><span class="line">	int *p = &amp;num;</span><br><span class="line">	p = &amp;another;</span><br><span class="line">	printf(&quot;%d\n&quot;, *p);//-5</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>从某种意义上来说，引用完全有别于上面说介绍的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int val = 7, val2 = 999;</span><br><span class="line">	int &amp;refval = val, &amp;refval2 = val2; ///引用必须要初始化，使其绑定到一个变量上</span><br><span class="line">	///修改引用的值将改变其所绑定的变量的值</span><br><span class="line">	refval = -12;</span><br><span class="line">	printf(&quot;%d %d\n&quot;, val, refval);//-12，refval的值和val一样</span><br><span class="line">	</span><br><span class="line">	///将引用b赋值给引用a将改变引用a所绑定的变量的值，</span><br><span class="line">	///引用一但初始化(绑定)，将始终绑定到同一个特定对象上，无法绑定到另一个对象上</span><br><span class="line">	refval = refval2;</span><br><span class="line">	printf(&quot;%d %d\n&quot;, val, refval);//999</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="指向指针的指针："><a href="#指向指针的指针：" class="headerlink" title="指向指针的指针："></a>指向指针的指针：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int val = 7;</span><br><span class="line">	int *p = &amp;val;</span><br><span class="line">	int **p2 = &amp;p;///**声明一个指向指针的指针</span><br><span class="line">	printf(&quot;val的值为%d %d&quot;,*p,**p2);///**p2为两次解引用，可看做*(*p2)</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于指针也要占用内存空间存放其值，所以我们也可以定义一个指向指针的指针。</p>
+<h2 id="指针与数组："><a href="#指针与数组：" class="headerlink" title="指针与数组："></a>指针与数组：</h2><p>指针和迭代器非常像，我们可以说指针就是数组的迭代器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">int val[100];</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	for (int i = 0; i &lt; 100; ++i)</span><br><span class="line">		val[i] = i;</span><br><span class="line">	int *p = val;///等价于int *p = &amp;val[0];</span><br><span class="line">	///数组的变量名就是一个指针</span><br><span class="line">	printf(&quot;%d\n&quot;, *p); ///指针p指向val的第一个元素，即val[0]</span><br><span class="line">	</span><br><span class="line">	int t = 100;</span><br><span class="line">	while (t--)</span><br><span class="line">		///可以直接对指针进行加减运算，就和迭代器一样</span><br><span class="line">		printf(&quot;%d\n&quot;, *(p++));///输出0~99</span><br><span class="line">		</span><br><span class="line">	///指针可以做差：</span><br><span class="line">	int *p2 = &amp;val[10], *p3 = &amp;val[20];</span><br><span class="line">	printf(&quot;%d\n&quot;, p3 - p2); //10</span><br><span class="line">	printf(&quot;%d\n&quot;, p2 - p3); //-10</span><br><span class="line">	</span><br><span class="line">	///还可以比比较大小：</span><br><span class="line">	printf(&quot;%d\n&quot;, p2 &lt; p3 ? p3 - p2 : p2 - p3); //10</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于多维数组，只要把指向指针的指针理解好了就行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">int val[100][100];</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	val[2][1] = 666;</span><br><span class="line">	///如何用指针取出val[2][1]？</span><br><span class="line">	printf(&quot;%d&quot;, *(*(val + 2) + 1));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/28/破解加密的压缩文件/" rel="next" title="破解加密的压缩文件">
+                <i class="fa fa-chevron-left"></i> 破解加密的压缩文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/28/详解C++内存管理/" rel="prev" title="C++内存管理（超长，例子很详细，排版很好）">
+                C++内存管理（超长，例子很详细，排版很好） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="XiaoJun" />
+            
+              <p class="site-author-name" itemprop="name">XiaoJun</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiaojun-cd" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初步了解——指针与取地址"><span class="nav-number">1.</span> <span class="nav-text">初步了解——指针与取地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何使用指针？——解引用与指针赋值"><span class="nav-number">2.</span> <span class="nav-text">如何使用指针？——解引用与指针赋值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用"><span class="nav-number">3.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充"><span class="nav-number">4.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#指向指针的指针："><span class="nav-number">4.1.</span> <span class="nav-text">指向指针的指针：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指针与数组："><span class="nav-number">4.2.</span> <span class="nav-text">指针与数组：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XiaoJun</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
